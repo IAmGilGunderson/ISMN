@@ -20,8 +20,7 @@ mkdir -p ./Chapters/Chapter01/RawPages
 cd ./Chapters/Chapter01/RawPages
 gs -sDEVICE=jpeg -r100 -o Chapter01-%03d.jpg ./Chapter01.pdf
 
-cp ../../../scripts/evenpage_master.svg evenpage.svg
-cp ../../../scripts/oddpage_master.svg oddpage.svg
+cp ../../../scripts/evenpage_master.svg evenpage.svg ; cp ../../../scripts/oddpage_master.svg oddpage.svg
 ls *.jpg | awk '1==1 {printf("python3 ../../../scripts/svgmask.py ./%s\n",$0);}' | sh
 
 inkscape *-even.svg *-odd.svg
@@ -51,7 +50,7 @@ echo # cleanup
 rm *.pdf *.png
 rename 's/.jpg-even_maintext001.png.txt.txt/.txt/g' *.txt
 rename 's/.jpg-odd_maintext001.png.txt.txt/.txt/g' *.txt
-rename  's/.jpg-even_sidebar001.png/-sidebar.png/g' *sidebar001.png
+rename -n 's/.jpg-even_sidebar001.png/-sidebar.png/g' *sidebar001.png
 rename  's/.jpg-odd_sidebar001.png/-sidebar.png/g' *sidebar001.png
 rename 's/.jpg-bigimage_bigimage001.png/-bigimage.png/g' *bigimage001.png
 #rename -n 's/jpg.txt.txt/txt/g' *.txt
