@@ -21,6 +21,10 @@ cd ./Chapters/Chapter01/RawPages
 gs -sDEVICE=jpeg -r100 -o Chapter01-%03d.jpg ./Chapter01.pdf
 
 cp ../../../scripts/evenpage_master.svg evenpage.svg ; cp ../../../scripts/oddpage_master.svg oddpage.svg
+or
+cp ../../../scripts/evenpage_master_nointer.svg evenpage.svg ; cp ../../../scripts/oddpage_master_nointer.svg oddpage.svg
+
+
 ls *.jpg | awk '1==1 {printf("python3 ../../../scripts/svgmask.py ./%s\n",$0);}' | sh
 
 inkscape *-even.svg *-odd.svg
@@ -29,10 +33,14 @@ inkscape *-even.svg *-odd.svg
 echo ### Even and Odd maintext001
 ls *-odd.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);}' | sh
 ls *-even.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);}' | sh
+or
+ls Chapter*.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);}' | sh
 
 echo ### Even and Odd sidebar001
 ls *-odd.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
 ls *-even.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
+or
+ls Chapter*.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
 
 
 
@@ -47,12 +55,16 @@ echo ### Concatenate all the text files
 ls *.txt | sort -n | awk '1==1 {printf("cat %s\n",$0);}' | cat | sh >../Chapter01-pass01.txt
 
 echo # cleanup
-rm *.pdf *.png
-rename 's/.jpg-even_maintext001.png.txt.txt/.txt/g' *.txt
-rename 's/.jpg-odd_maintext001.png.txt.txt/.txt/g' *.txt
-rename -n 's/.jpg-even_sidebar001.png/-sidebar.png/g' *sidebar001.png
-rename  's/.jpg-odd_sidebar001.png/-sidebar.png/g' *sidebar001.png
-rename 's/.jpg-bigimage_bigimage001.png/-bigimage.png/g' *bigimage001.png
+rm *.pdf
+rename 's/.jpg_maintext001.png.txt//g' *maintext001*
+rename 's/.jpg_maintext001/-maintext/g' *maintext*
+rename 's/.jpg_sidebar001/-sidebar/g' *sidebar*
+
+#rename 's/.jpg-even_maintext001.png.txt.txt/.txt/g' *.txt
+#rename 's/.jpg-odd_maintext001.png.txt.txt/.txt/g' *.txt
+#rename -n 's/.jpg-even_sidebar001.png/-sidebar.png/g' *sidebar001.png
+#rename  's/.jpg-odd_sidebar001.png/-sidebar.png/g' *sidebar001.png
+#rename 's/.jpg-bigimage_bigimage001.png/-bigimage.png/g' *bigimage001.png
 #rename -n 's/jpg.txt.txt/txt/g' *.txt
 
 

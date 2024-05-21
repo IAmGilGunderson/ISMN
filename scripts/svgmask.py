@@ -108,8 +108,9 @@ else:
     suffix = "even"
 
 print("using mask", mask_path)
-#ISMN-Chapter0x-Page00x-odd.svg
-output_path = f'{image_path}-{suffix}.svg'
+# ISMN-Chapter0x-Page00x-odd.svg
+# output_path = f'{image_path}-{suffix}.svg' # I don't think suffix is really needed
+output_path = f'{image_path}.svg'
 
 
 apply_mask(image_path, mask_path, output_path)
