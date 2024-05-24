@@ -28,6 +28,8 @@ cp ../../../scripts/evenpage_master_nointer.svg evenpage.svg ; cp ../../../scrip
 ls *.jpg | awk '1==1 {printf("python3 ../../../scripts/svgmask.py ./%s\n",$0);}' | sh
 
 inkscape *-even.svg *-odd.svg
+or
+inkscape Chapter*.svg
 
 
 echo ### Even and Odd maintext001
