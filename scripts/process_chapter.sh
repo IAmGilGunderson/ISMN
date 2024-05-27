@@ -51,3 +51,16 @@ while true; do
 done
 
 echo "Now create the rest of the files."
+
+ls Chapter*.svg |grep -v "bigimage" | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
+
+echo ### the big image
+ls *-bigimage.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"bigimage001\" ./%s\n",$0);}' | sh
+
+echo "Cleanup"
+rm *.pdf
+rename 's/.jpg_maintext001.png.txt//g' *maintext001*
+rename 's/.jpg_maintext001/-maintext/g' *maintext*
+rename 's/.jpg_sidebar001/-sidebar/g' *sidebar*
+
+
