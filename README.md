@@ -36,13 +36,13 @@ echo ### Even and Odd maintext001
 ls *-odd.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);}' | sh
 ls *-even.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);}' | sh
 or
-ls Chapter*.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);}' | sh
+ls Chapter*.svg | grep -v "bigimage" | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"maintext001\" ./%s\n",$0);} | sh
 
 echo ### Even and Odd sidebar001
 ls *-odd.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
 ls *-even.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
 or
-ls Chapter*.svg | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
+ls Chapter*.svg |grep -v "bigimage" | awk '1==1 {printf("inkscape --export-type=\"png\" --export-dpi=300 --export-id=\"sidebar001\" ./%s\n",$0);}' | sh
 
 
 
