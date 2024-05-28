@@ -10,8 +10,12 @@ cd ./Chapters/Chapter$CHAPTER/RawPages
 cp /tmp/misc/Italian_By_The_Natural_Method_Chapters/Chapter$CHAPTER.pdf .
 gs -sDEVICE=jpeg -r100 -o Chapter$CHAPTER-%03d.jpg ./Chapter$CHAPTER.pdf
 
+# Normal Way
 cp ../../../scripts/evenpage_master_nointer.svg evenpage.svg
 cp ../../../scripts/oddpage_master_nointer.svg oddpage.svg
+# sometimes these can be backward.
+cp ../../../scripts/evenpage_master_nointer.svg oddpage.svg
+cp ../../../scripts/oddpage_master_nointer.svg evenpage.svg
 
 for file in *.jpg; do
    python3 ../../../scripts/svgmask.py $file
